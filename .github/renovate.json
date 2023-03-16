@@ -13,7 +13,7 @@
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"(?<depName>[^\":]+:[^\":]+):(?<currentValue>[^\":]+)\""
+        "\"(?<depName>[^\":]+:[^\":]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
     {
