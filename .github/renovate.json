@@ -21,7 +21,7 @@
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"version\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$version\""
+        "\"version\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$version\""
       ]
     },
     {
@@ -29,7 +29,7 @@
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"v\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$v\""
+        "\"v\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$v\""
       ]
     },
     {
@@ -37,7 +37,7 @@
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"slf4j\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$slf4j\""
+        "\"slf4j\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$slf4j\""
       ]
     }
   ]
