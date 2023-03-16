@@ -7,6 +7,15 @@
     "workarounds:all"
   ],
   "rebaseWhen": "conflicted",
+  "packageRules": [
+    {
+      "matchDatasources": ["maven"],
+      "registryUrls": [
+        "https://repo.maven.apache.org/maven2/",
+        "https://jitpack.io/"
+      ]
+    }
+  ],
   "regexManagers": [
     {
       "datasourceTemplate": "maven",
