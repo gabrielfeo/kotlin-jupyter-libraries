@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   
 permissions:
-  pull_requests: write
+  pull-requests: write
   contents: write
 
 jobs:
