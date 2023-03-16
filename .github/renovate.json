@@ -15,6 +15,14 @@
       "matchStrings": [
         "\"(?<depName>[^\":]+:[^\":]+):(?<currentValue>[^\":]+)\""
       ]
+    },
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [".*\\.json"],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\"version\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$version\""
+      ]
     }
   ]
 }
