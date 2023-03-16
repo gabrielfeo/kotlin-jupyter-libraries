@@ -23,6 +23,22 @@
       "matchStrings": [
         "\"version\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$version\""
       ]
+    },
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [".*\\.json"],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\"v\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$v\""
+      ]
+    },
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [".*\\.json"],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\"slf4j\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$slf4j\""
+      ]
     }
   ]
 }
