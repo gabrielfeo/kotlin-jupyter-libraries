@@ -1,11 +1,14 @@
 {
   "enabled": true,
-  "branchPrefix": "renovate/",
-  "repositories": ["gabrielfeo/kotlin-jupyter-libraries"],
   "extends": [
     "group:recommended",
     "workarounds:all"
   ],
+  "repositories": ["gabrielfeo/kotlin-jupyter-libraries"],
+  "branchPrefix": "renovate/",
+  "branchConcurrentLimit": 0,
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
   "rebaseWhen": "conflicted",
   "packageRules": [
     {
