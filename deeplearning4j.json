@@ -2,7 +2,7 @@
   "description": "Deep learning library for the JVM",
   "properties": {
     "v": "1.0.0-beta6",
-    "slf4j": "1.7.25",
+    "slf4j": "1.7.36",
     "freemarker": "2.3.29"
   },
   "link": "https://github.com/eclipse/deeplearning4j",
