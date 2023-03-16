@@ -1,7 +1,7 @@
 {
   "enabled": true,
   "branchPrefix": "renovate/",
-  "dryRun": "full",
+  "dryRun": "extract",
   "repositories": ["gabrielfeo/kotlin-jupyter-libraries"],
   "extends": [
     "group:recommended",
