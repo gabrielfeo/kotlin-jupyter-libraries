@@ -11,7 +11,7 @@
     "org.jetbrains.lets-plot:lets-plot-kotlin-kernel:$api",
     "org.jetbrains.lets-plot:lets-plot-common:$lib",
     "org.jetbrains.lets-plot:lets-plot-image-export:$lib",
-    "io.github.microutils:kotlin-logging-jvm:2.0.5"
+    "io.github.microutils:kotlin-logging-jvm:3.0.5"
   ],
   "imports": [
     "org.jetbrains.letsPlot.*",
