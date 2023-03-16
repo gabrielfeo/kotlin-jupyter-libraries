@@ -1,0 +1,21 @@
+{
+  "enabled": true,
+  "branchPrefix": "renovate/",
+  "dryRun": "full",
+  "repositories": ["gabrielfeo/kotlin-jupyter-libraries"],
+  "extends": [
+    "group:recommended",
+    "workarounds:all"
+  ],
+  "rebaseWhen": "conflicted",
+  "regexManagers": [
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [".*\\.json"],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\"(?<depName>[^\":]+:[^\":]+):(?<currentValue>[^\":]+)\""
+      ]
+    }
+  ]
+}
