@@ -49,7 +49,7 @@
         "\"v\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
       ]
     },
-    // for dependencies that interpolate $slf4j only
+    // for deeplearning4j*.json, dependencies that interpolate $slf4j
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
@@ -59,6 +59,33 @@
       "matchStrings": [
         "\"slf4j\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$slf4j\""
       ]
+    },
+    // for deeplearning4j*.json, dependencies that interpolate $freemarker
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "deeplearning4j.*\\.json"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "\"freemarker\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$freemarker\""
+      ]
+    },
+    // TODO for deeplearning4j*.json, dependencies that interpolate $cuda and $v
+    // {}
+    // for spark*.json, which interpolate $spark, $scala and $v
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "spark.*\\.json"
+      ],
+      "matchStringsStrategy": "combination",
+      "matchStrings": [
+        "\"spark\": ?\"(?<spark>.+?)\"",
+        "\"scala\": ?\"(?<scala>.+?)\"",
+        "\"v\": ?\"(?<v>.+?)\""
+      ],
+      "depNameTemplate": "org.jetbrains.kotlinx.spark:jupyter_{{{spark}}}_{{{scala}}}:{{{v}}}"
     }
   ]
 }
