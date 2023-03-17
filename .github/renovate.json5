@@ -19,34 +19,42 @@
       ]
     }
   ],
+  // Dependencies that interpolate different property names, beyond
+  // $v or $version, need their own matcher (RE2 regex)
   "regexManagers": [
+    // for dependencies with no interpolated properties
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"(?<depName>[^\":]+:[^\":]+):(?<currentValue>[^\":\\$]+)\""
+        "\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
+    // for dependencies that interpolate $version only
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"version\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$version\""
+        "\"version\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$version\""
       ]
     },
+    // for dependencies that interpolate $v only
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"v\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$v\""
+        "\"v\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
       ]
     },
+    // for dependencies that interpolate $slf4j only
     {
       "datasourceTemplate": "maven",
-      "fileMatch": [".*\\.json"],
+      "fileMatch": [
+        "deeplearning4j.*\\.json"
+      ],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "\"slf4j\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$slf4j\""
