@@ -75,8 +75,45 @@
         "\"(?<depName>.+?:.+?):\\$freemarker\""
       ]
     },
-    // TODO for deeplearning4j*.json, dependencies that interpolate $cuda and $v
-    // {}
+    // for deeplearning4j*.json, org.nd4j:nd4j-cuda-$cuda:$v
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "deeplearning4j.*\\.json"
+      ],
+      "matchStringsStrategy": "combination",
+      "matchStrings": [
+        "\"cuda\": ?\"(?<cuda>.+?)\"",
+        "\"v\": ?\"(?<v>.+?)\""
+      ],
+      "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}:{{{v}}}"
+    },
+    // for deeplearning4j*.json, org.nd4j:nd4j-cuda-$cuda-platform:$v
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "deeplearning4j.*\\.json"
+      ],
+      "matchStringsStrategy": "combination",
+      "matchStrings": [
+        "\"cuda\": ?\"(?<cuda>.+?)\"",
+        "\"v\": ?\"(?<v>.+?)\""
+      ],
+      "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}-platform:{{{v}}}"
+    },
+    // for deeplearning4j*.json, org.deeplearning4j:deeplearning4j-cuda-$cuda:$v
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "deeplearning4j.*\\.json"
+      ],
+      "matchStringsStrategy": "combination",
+      "matchStrings": [
+        "\"cuda\": ?\"(?<cuda>.+?)\"",
+        "\"v\": ?\"(?<v>.+?)\""
+      ],
+      "depNameTemplate": "org.deeplearning4j:deeplearning4j-cuda-{{{cuda}}}:{{{v}}}"
+    },
     // for spark*.json, which interpolate $spark, $scala and $v
     {
       "datasourceTemplate": "maven",
