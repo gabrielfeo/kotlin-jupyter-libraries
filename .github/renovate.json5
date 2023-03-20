@@ -35,18 +35,20 @@
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
-      "matchStringsStrategy": "any",
+      "matchStringsStrategy": "combination",
       "matchStrings": [
-        "\"version\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$version\""
+        "\"version\": ?\"(?<currentValue>.+?)\"",
+        "\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$version\""
       ]
     },
     // for dependencies that interpolate $v only
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
-      "matchStringsStrategy": "any",
+      "matchStringsStrategy": "combination",
       "matchStrings": [
-        "\"v\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
+        "\"v\": ?\"(?<currentValue>.+?)\"",
+        "\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
       ]
     },
     // for deeplearning4j*.json, dependencies that interpolate $slf4j
@@ -55,9 +57,10 @@
       "fileMatch": [
         "deeplearning4j.*\\.json"
       ],
-      "matchStringsStrategy": "any",
+      "matchStringsStrategy": "combination",
       "matchStrings": [
-        "\"slf4j\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$slf4j\""
+        "\"slf4j\": ?\"(?<currentValue>.+?)\"",
+        "\"(?<depName>.+?:.+?):\\$slf4j\""
       ]
     },
     // for deeplearning4j*.json, dependencies that interpolate $freemarker
@@ -66,9 +69,10 @@
       "fileMatch": [
         "deeplearning4j.*\\.json"
       ],
-      "matchStringsStrategy": "any",
+      "matchStringsStrategy": "combination",
       "matchStrings": [
-        "\"freemarker\": ?\"(?<currentValue>.+?)\"[\\s\\S]*\"(?<depName>.+?:.+?):\\$freemarker\""
+        "\"freemarker\": ?\"(?<currentValue>.+?)\"",
+        "\"(?<depName>.+?:.+?):\\$freemarker\""
       ]
     },
     // TODO for deeplearning4j*.json, dependencies that interpolate $cuda and $v
