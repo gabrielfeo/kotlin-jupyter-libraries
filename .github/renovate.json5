@@ -31,6 +31,10 @@
         "\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
+    //
+    // TODO All managers that should match multiple deps per file must be reverted
+    //      back to 'any' strategy
+    //
     // for dependencies that interpolate $version only
     {
       "datasourceTemplate": "maven",
