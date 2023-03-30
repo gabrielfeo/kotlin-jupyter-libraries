@@ -73,6 +73,30 @@
         "(?s)\"freemarker\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$freemarker\""
       ]
     },
+    // for lets-plot*.json, dependencies that interpolate $gt, $api or $lib
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "lets-plot*.json"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "(?s)\"gt\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$gt\"",
+        "(?s)\"api\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$api\"",
+        "(?s)\"lib\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$lib\""
+      ]
+    },
+    // for ggdsl*.json, dependencies that interpolate $ggDSLVersion
+    {
+      "datasourceTemplate": "maven",
+      "fileMatch": [
+        "ggdsl*.json"
+      ],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "(?s)\"ggDSLVersion\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$ggDSLVersion\""
+      ]
+    },
     // for org.nd4j:nd4j-cuda-$cuda:$v in deeplearning4j*.json
     {
       "datasourceTemplate": "maven",
