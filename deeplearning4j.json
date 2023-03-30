@@ -3,7 +3,7 @@
   "properties": {
     "v": "1.0.0-beta6",
     "slf4j": "1.7.25",
-    "freemarker": "2.3.29"
+    "freemarker": "2.3.32"
   },
   "link": "https://github.com/eclipse/deeplearning4j",
   "dependencies": [
