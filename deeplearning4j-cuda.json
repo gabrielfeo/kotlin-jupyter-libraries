@@ -1,7 +1,7 @@
 {
   "description": "Deep learning library for the JVM (CUDA support)",
   "properties": {
-    "v": "1.0.0-beta6",
+    "v": "1.0.0-beta7",
     "cuda": "10.2",
     "slf4j": "1.7.25",
     "freemarker": "2.3.29"
