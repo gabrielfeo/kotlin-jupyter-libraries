@@ -1,3 +1,4 @@
 /.idea/
 commit_sha
 .DS_Store
+*.pyc
