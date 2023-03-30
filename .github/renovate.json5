@@ -19,10 +19,12 @@
       ]
     }
   ],
-  // Dependencies that interpolate different property names, beyond
-  // $v or $version, need their own matcher (RE2 regex)
+  // One manager for each "pattern" of interpolated variables, e.g. one manager to match
+  // "g:a:$v" and another to match "g:a:$version". More complex interpolations such as
+  // "g:a-jdk$jdkVersion:$v" need their own manager. The comment above each manager declares
+  // its intent.
   "regexManagers": [
-    // for dependencies with no interpolated properties
+    // for all dependencies with no interpolated properties
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
@@ -31,28 +33,22 @@
         "\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
-    //
-    // TODO All managers that should match multiple deps per file must be reverted
-    //      back to 'any' strategy
-    //
-    // for dependencies that interpolate $version only
+    // for all dependencies that interpolate $version only
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
-      "matchStringsStrategy": "combination",
+      "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"version\": ?\"(?<currentValue>.+?)\"",
-        "\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$version\""
+        "(?s)\"version\": ?\"(?<currentValue>.+?)\".*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$version\""
       ]
     },
-    // for dependencies that interpolate $v only
+    // for all dependencies that interpolate $v only
     {
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json"],
-      "matchStringsStrategy": "combination",
+      "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"v\": ?\"(?<currentValue>.+?)\"",
-        "\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
+        "(?s)\"v\": ?\"(?<currentValue>.+?)\".*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
       ]
     },
     // for deeplearning4j*.json, dependencies that interpolate $slf4j
@@ -61,10 +57,9 @@
       "fileMatch": [
         "deeplearning4j.*\\.json"
       ],
-      "matchStringsStrategy": "combination",
+      "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"slf4j\": ?\"(?<currentValue>.+?)\"",
-        "\"(?<depName>.+?:.+?):\\$slf4j\""
+        "(?s)\"slf4j\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$slf4j\""
       ]
     },
     // for deeplearning4j*.json, dependencies that interpolate $freemarker
@@ -73,13 +68,12 @@
       "fileMatch": [
         "deeplearning4j.*\\.json"
       ],
-      "matchStringsStrategy": "combination",
+      "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"freemarker\": ?\"(?<currentValue>.+?)\"",
-        "\"(?<depName>.+?:.+?):\\$freemarker\""
+        "(?s)\"freemarker\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$freemarker\""
       ]
     },
-    // for deeplearning4j*.json, org.nd4j:nd4j-cuda-$cuda:$v
+    // for org.nd4j:nd4j-cuda-$cuda:$v in deeplearning4j*.json
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
@@ -92,7 +86,7 @@
       ],
       "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}"
     },
-    // for deeplearning4j*.json, org.nd4j:nd4j-cuda-$cuda-platform:$v
+    // for org.nd4j:nd4j-cuda-$cuda-platform:$v in deeplearning4j*.json
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
@@ -105,7 +99,7 @@
       ],
       "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}-platform"
     },
-    // for deeplearning4j*.json, org.deeplearning4j:deeplearning4j-cuda-$cuda:$v
+    // for org.deeplearning4j:deeplearning4j-cuda-$cuda:$v in deeplearning4j*.json
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
@@ -118,7 +112,7 @@
       ],
       "depNameTemplate": "org.deeplearning4j:deeplearning4j-cuda-{{{cuda}}}"
     },
-    // for spark*.json, which interpolate $spark, $scala and $v
+    // for org.jetbrains.kotlinx.spark:jupyter_$spark_$scala:$v in spark*.json
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
