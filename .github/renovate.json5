@@ -73,36 +73,16 @@
         "(?s)\"freemarker\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$freemarker\""
       ]
     },
-    // for lets-plot*.json, dependencies that interpolate $gt
+    // for lets-plot*.json, dependencies that interpolate $gt, $api or $lib
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
-        "lets-plot*\\.json"
+        "lets-plot.*\\.json"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "(?s)\"gt\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$gt\""
-      ]
-    },
-    // for lets-plot*.json, dependencies that interpolate $api
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "lets-plot*\\.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "(?s)\"api\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$api\""
-      ]
-    },
-    // for lets-plot*.json, dependencies that interpolate $lib
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "lets-plot*\\.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
+        "(?s)\"gt\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$gt\"",
+        "(?s)\"api\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$api\"",
         "(?s)\"lib\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$lib\""
       ]
     },
@@ -110,7 +90,7 @@
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
-        "ggdsl*\\.json"
+        "ggdsl.*\\.json"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
