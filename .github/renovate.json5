@@ -77,7 +77,7 @@
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
-        "lets-plot*.json"
+        "lets-plot*\\.json"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
@@ -90,11 +90,12 @@
     {
       "datasourceTemplate": "maven",
       "fileMatch": [
-        "ggdsl*.json"
+        "ggdsl*\\.json"
       ],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "(?s)\"ggDSLVersion\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$ggDSLVersion\""
+        "(?s)\"ggDSLVersion\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$ggDSLVersion\"",
+        "(?s){\"name\": \"ggDSLVersion\", \"value\": \"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$ggDSLVersion\""
       ]
     },
     // for org.nd4j:nd4j-cuda-$cuda:$v in deeplearning4j*.json
