@@ -17,4 +17,5 @@ jobs:
           token: ${{ secrets.RENOVATE_GITHUB_TOKEN }}
           configurationFile: '.github/renovate.json5'
         env:
-          LOG_LEVEL: 'debug'
+          LOG_LEVEL: 'info'
+          RENOVATE_DRY_RUN: 'extract'
