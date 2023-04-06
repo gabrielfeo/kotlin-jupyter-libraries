@@ -110,19 +110,6 @@
       ],
       "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}"
     },
-    // for org.nd4j:nd4j-cuda-$cuda-platform:$v in deeplearning4j*.json
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "deeplearning4j.*\\.json"
-      ],
-      "matchStringsStrategy": "combination",
-      "matchStrings": [
-        "\"cuda\": ?\"(?<cuda>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}-platform"
-    },
     // for org.deeplearning4j:deeplearning4j-cuda-$cuda:$v in deeplearning4j*.json
     {
       "datasourceTemplate": "maven",
