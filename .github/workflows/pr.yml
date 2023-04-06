@@ -13,12 +13,12 @@ jobs:
         uses: renovatebot/github-action@v36.0.0
         with:
           token: ${{ secrets.RENOVATE_GITHUB_TOKEN }}
-          configurationFile: '.github/renovate.json5'
-        env:
-          LOG_LEVEL: 'debug'
-          RENOVATE_LOG_FILE: 'renovate.log'
-          RENOVATE_LOG_FILE_LEVEL: 'info'
-          RENOVATE_DRY_RUN: 'extract'
+          configurationFile: '.github/workflows/renovate-config.js'
+        # env:
+        #   LOG_LEVEL: 'debug'
+        #   RENOVATE_LOG_FILE: 'renovate.log'
+        #   RENOVATE_LOG_FILE_LEVEL: 'info'
+        #   RENOVATE_DRY_RUN: 'extract'
       - name: 'Check Renovate can match dependencies of all descriptors'
         run: .github/scripts/check_renovate_matches.py renovate.log > check_output.log
       - name: 'Build helpful PR comment'
