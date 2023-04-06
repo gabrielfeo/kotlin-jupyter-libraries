@@ -18,6 +18,6 @@ jobs:
         with:
           token: ${{ secrets.RENOVATE_GITHUB_TOKEN }}
           configurationFile: '.github/workflows/renovate-config.js'
-        # env:
-        #   LOG_LEVEL: 'info'
-        #   RENOVATE_DRY_RUN: 'extract'
+        env:
+          LOG_LEVEL: 'info'
+          RENOVATE_DRY_RUN: 'extract'
