@@ -44,9 +44,9 @@ class TestCheckRenovateMatches(unittest.TestCase):
 
     @mock.patch('sys.stderr', new_callable=io.StringIO)
     def test_given_empty_log_then_fails(self, stderr: io.StringIO):
-        self.setup_descriptors_and_log(log_content='')
+        self.setup_test_args(log_content='')
         with self.assertRaises(SystemExit) as context:
-            main(self.descriptors_dir, renovate_debug_log=self.renovate_log)
+            main(self.test_args)
         self.assertEqual(context.exception.code, 1)
         stderr = stderr.getvalue()
         self.assertIn('org.freemarker:freemarker', stderr)
@@ -54,7 +54,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
         self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stderr)
         self.assertIn('example:lib', stderr)
 
-    def setup_descriptors_and_log(self, log_content):
+    def setup_test_args(self, log_content):
         self.renovate_log = NamedTemporaryFile('w+')
         self.renovate_log.write(log_content)
         self.renovate_log.flush()
@@ -65,10 +65,14 @@ class TestCheckRenovateMatches(unittest.TestCase):
             lib1.write(LIB1_DESCRIPTOR)
         with open(self.descriptors_dir/'lib2.json', 'w') as lib2:
             lib2.write(LIB2_DESCRIPTOR)
+        self.test_args = [
+            '--descriptors-dir', str(self.descriptors_dir),
+            self.renovate_log.name,
+        ]
 
     @mock.patch('sys.stderr', new_callable=io.StringIO)
     def test_given_log_with_some_missing_packages_then_fails(self, stderr: io.StringIO):
-        self.setup_descriptors_and_log(log_content='''
+        self.setup_test_args(log_content='''
             2023-03-30T13:46:13.0262830Z DEBUG: logs
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.freemarker:freemarker in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
             2023-03-30T13:46:13.0262830Z DEBUG: more logs
@@ -76,7 +80,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up example:lib in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
         ''')
         with self.assertRaises(SystemExit) as context:
-            main(self.descriptors_dir, renovate_debug_log=self.renovate_log)
+            main(self.test_args)
         self.assertEqual(context.exception.code, 1)
         stderr = stderr.getvalue()
         self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stderr)
@@ -86,7 +90,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
 
     @mock.patch('sys.stderr', new_callable=io.StringIO)
     def test_given_log_with_no_missing_package_then_succeeds(self, stderr: io.StringIO):
-        self.setup_descriptors_and_log(log_content='''
+        self.setup_test_args(log_content='''
             2023-03-30T13:46:13.0262830Z DEBUG: logs
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.freemarker:freemarker in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
             2023-03-30T13:46:13.0262830Z DEBUG: more logs
@@ -95,7 +99,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13 in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
         ''')
         try:
-            main(self.descriptors_dir, renovate_debug_log=self.renovate_log)
+            main(self.test_args)
             self.assertEqual(stderr.getvalue(), '')
         except SystemExit as exit:
             msg = f"Unexpected system exit {exit.code}. Stderr: {stderr.getvalue()}"

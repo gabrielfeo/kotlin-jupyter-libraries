@@ -7,20 +7,17 @@ adjusted to match the missing libraries.
 
 import argparse
 import json
-import os
 from pathlib import Path
 import re
 import sys
 
 
-def get_library_descriptors(dir):
+def get_library_descriptors(dir: Path):
     """Get library descriptors in JSON format"""
-    for p in os.listdir(dir):
-        if p.endswith('.json'):
-            yield json.loads(Path(dir/p).read_text())
+    return (json.loads(p.read_text()) for p in dir.glob('*.json'))
 
 
-def extract_dependencies(descriptor):
+def extract_dependencies(descriptor: dict):
     """Parse dependencies required by a library descriptor"""
     if 'dependencies' not in descriptor:
         return
@@ -31,7 +28,7 @@ def extract_dependencies(descriptor):
             yield dep
 
 
-def interpolate(dep, properties):
+def interpolate(dep: str, properties: dict):
     """
     Interpolate a string if it contains variables from the properties object,
     e.g. 'my:lib:$myLibVersion'
@@ -52,38 +49,44 @@ def interpolate(dep, properties):
     return dep
 
 
-def get_packages_not_in_log(packages, log):
+def get_packages_not_in_log(packages: list[str], log: Path):
     """Get a list of dependencies that don't appear in the Renovate debug log"""
     missing = packages
-    for line in log.readlines():
+    for line in log.read_text().splitlines():
         line_matches = set(p for p in missing if p in line)
         for package in line_matches:
             missing.remove(package)
     return missing
 
 
-def dependency_to_package_name(dep):
+def dependency_to_package_name(dep: str) -> str:
     """group:artifact:version -> group:artifact"""
     parts = dep.split(':')
     return ':'.join(parts[0:2])
 
 
-def main(descriptors_dir, renovate_debug_log):
+parser = argparse.ArgumentParser()
+parser.add_argument('log',
+                    type=Path,
+                    help='Path of Renovate debug log that should be checked')
+parser.add_argument('--descriptors-dir',
+                    type=Path,
+                    default=Path('.'),
+                    help='Directory containing kernel library descriptors')
+
+
+def main(argv=None):
+    args = parser.parse_args(argv)
     packages = set()
-    for descriptor in get_library_descriptors(descriptors_dir):
+    for descriptor in get_library_descriptors(args.descriptors_dir):
         for dependency in extract_dependencies(descriptor):
             package = dependency_to_package_name(dependency)
             packages.add(package)
-    unmatched = get_packages_not_in_log(packages, renovate_debug_log)
+    unmatched = get_packages_not_in_log(packages, args.log)
     if unmatched:
         print(*unmatched, sep='\n', file=sys.stderr)
         exit(1)
 
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument('log',
-                        type=argparse.FileType('r'),
-                        help='Path of Renovate debug log that should be checked')
-    args = parser.parse_args()
-    main(descriptors_dir=Path('.'), renovate_debug_log=args.log)
+    main()
