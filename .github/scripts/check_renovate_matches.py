@@ -12,14 +12,15 @@ import re
 import sys
 
 
-parser = argparse.ArgumentParser()
+parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('log',
                     type=Path,
                     help='Path of Renovate debug log that should be checked')
 parser.add_argument('--descriptors-dir',
                     type=Path,
                     default=Path('.'),
-                    help='Directory containing kernel library descriptors')
+                    help='Directory containing kernel library descriptors. \
+                          Defaults to current dir.')
 
 
 def main(argv=None):
