@@ -17,11 +17,11 @@ jobs:
           configurationFile: '.github/workflows/renovate-config.js'
         # env:
         #   LOG_LEVEL: 'debug'
-        #   RENOVATE_LOG_FILE: 'renovate.log'
+        #   RENOVATE_LOG_FILE: '/tmp/renovate.log'
         #   RENOVATE_LOG_FILE_LEVEL: 'info'
         #   RENOVATE_DRY_RUN: 'extract'
       - name: 'Check Renovate can match dependencies of all descriptors'
-        run: .github/scripts/check_renovate_matches.py renovate.log > check_output.log
+        run: .github/scripts/check_renovate_matches.py /tmp/renovate.log > check_output.log
       - name: 'Build helpful PR comment'
         if: ${{ github.event.pull_request && job.status == 'failure' }}
         run: |

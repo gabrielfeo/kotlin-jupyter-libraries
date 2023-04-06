@@ -3,7 +3,7 @@
 // const configFileText = fs.readFileSync(configFilePath, "utf8");
 module.exports = {
 	"dryRun": "extract",
-	"logFile": "renovate.log",
+	"logFile": "/tmp/renovate.log",
 	"logFileLevel": "info",
 	"repositories": ["gabrielfeo/kotlin-jupyter-libraries"],
 //	"logFormat": "text",
