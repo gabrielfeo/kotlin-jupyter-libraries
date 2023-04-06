@@ -4,7 +4,7 @@ on:
   pull_request
 
 jobs:
-  renovate:
+  check_renovate_matches:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -17,10 +17,12 @@ jobs:
           LOG_FILE: 'renovate.log'
           LOG_FILE_LEVEL: 'info'
           RENOVATE_DRY_RUN: 'extract'
-      - name: 'Check Renovate can extract all dependencies'
+      - name: 'Check Renovate can match dependencies of all descriptors'
+        run: .github/scripts/check_renovate_matches.py renovate.log > check_output.log
+      - name: 'Build helpful PR comment'
         run: |
           echo -e 'The following aren't matched by any Renovate manager:\n\n```' > comment.md
-          .github/scripts/check_renovate_matches.py renovate.log > comment.md
+          cat check_output.log > comment.md
           echo -e '```\n'
       - name: Find existing comment
         uses: peter-evans/find-comment@v2
