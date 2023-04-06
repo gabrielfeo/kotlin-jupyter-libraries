@@ -12,6 +12,29 @@ import re
 import sys
 
 
+parser = argparse.ArgumentParser()
+parser.add_argument('log',
+                    type=Path,
+                    help='Path of Renovate debug log that should be checked')
+parser.add_argument('--descriptors-dir',
+                    type=Path,
+                    default=Path('.'),
+                    help='Directory containing kernel library descriptors')
+
+
+def main(argv=None):
+    args = parser.parse_args(argv)
+    packages = set()
+    for descriptor in get_library_descriptors(args.descriptors_dir):
+        for dependency in extract_dependencies(descriptor):
+            package = dependency_to_package_name(dependency)
+            packages.add(package)
+    unmatched = get_packages_not_in_log(packages, args.log)
+    if unmatched:
+        print(*unmatched, sep='\n', file=sys.stderr)
+        exit(1)
+
+
 def get_library_descriptors(dir: Path):
     """Get library descriptors in JSON format"""
     return (json.loads(p.read_text()) for p in dir.glob('*.json'))
@@ -49,6 +72,12 @@ def interpolate(dep: str, properties: dict):
     return dep
 
 
+def dependency_to_package_name(dep: str) -> str:
+    """group:artifact:version -> group:artifact"""
+    parts = dep.split(':')
+    return ':'.join(parts[0:2])
+
+
 def get_packages_not_in_log(packages: list[str], log: Path):
     """Get a list of dependencies that don't appear in the Renovate debug log"""
     missing = packages
@@ -57,35 +86,6 @@ def get_packages_not_in_log(packages: list[str], log: Path):
         for package in line_matches:
             missing.remove(package)
     return missing
-
-
-def dependency_to_package_name(dep: str) -> str:
-    """group:artifact:version -> group:artifact"""
-    parts = dep.split(':')
-    return ':'.join(parts[0:2])
-
-
-parser = argparse.ArgumentParser()
-parser.add_argument('log',
-                    type=Path,
-                    help='Path of Renovate debug log that should be checked')
-parser.add_argument('--descriptors-dir',
-                    type=Path,
-                    default=Path('.'),
-                    help='Directory containing kernel library descriptors')
-
-
-def main(argv=None):
-    args = parser.parse_args(argv)
-    packages = set()
-    for descriptor in get_library_descriptors(args.descriptors_dir):
-        for dependency in extract_dependencies(descriptor):
-            package = dependency_to_package_name(dependency)
-            packages.add(package)
-    unmatched = get_packages_not_in_log(packages, args.log)
-    if unmatched:
-        print(*unmatched, sep='\n', file=sys.stderr)
-        exit(1)
 
 
 if __name__ == '__main__':
