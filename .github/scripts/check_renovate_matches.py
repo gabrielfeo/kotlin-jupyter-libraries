@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+"""Check that Renovate can match all dependencies in library descriptors.
+
+Errors in this check mean regex matchers in renovate.json should be
+adjusted to match the missing libraries.
+"""
 
 import argparse
 import json
@@ -9,12 +14,14 @@ import sys
 
 
 def get_library_descriptors(dir):
+    """Get library descriptors in JSON format"""
     for p in os.listdir(dir):
         if p.endswith('.json'):
             yield json.loads(Path(dir/p).read_text())
 
 
 def extract_dependencies(descriptor):
+    """Parse dependencies required by a library descriptor"""
     if 'dependencies' not in descriptor:
         return
     for dep in descriptor['dependencies']:
@@ -25,6 +32,10 @@ def extract_dependencies(descriptor):
 
 
 def interpolate(dep, properties):
+    """
+    Interpolate a string if it contains variables from the properties object,
+    e.g. 'my:lib:$myLibVersion'
+    """
     for var in re.findall(r'\$[a-zA-Z0-9]+', dep):
         key = var[1:]
         if isinstance(properties, list):
@@ -41,21 +52,27 @@ def interpolate(dep, properties):
     return dep
 
 
-def get_packages_not_in_log(dependencies, log):
-    missing_deps = dependencies
+def get_packages_not_in_log(packages, log):
+    """Get a list of dependencies that don't appear in the Renovate debug log"""
+    missing = packages
     for line in log.readlines():
-        line_matches = set(dep for dep in missing_deps if dep in line)
-        for dep in line_matches:
-            missing_deps.remove(dep)
-    return missing_deps
+        line_matches = set(p for p in missing if p in line)
+        for package in line_matches:
+            missing.remove(package)
+    return missing
+
+
+def dependency_to_package_name(dep):
+    """group:artifact:version -> group:artifact"""
+    parts = dep.split(':')
+    return ':'.join(parts[0:2])
 
 
 def main(descriptors_dir, renovate_debug_log):
     packages = set()
     for descriptor in get_library_descriptors(descriptors_dir):
         for dependency in extract_dependencies(descriptor):
-            parts = dependency.split(':')
-            package = ':'.join(parts[0:2])
+            package = dependency_to_package_name(dependency)
             packages.add(package)
     unmatched = get_packages_not_in_log(packages, renovate_debug_log)
     if unmatched:

@@ -4,7 +4,6 @@ from check_renovate_matches import main
 from tempfile import NamedTemporaryFile, TemporaryDirectory
 import unittest
 from unittest import mock
-import json
 from pathlib import Path
 import io
 
@@ -68,7 +67,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
             lib2.write(LIB2_DESCRIPTOR)
 
     @mock.patch('sys.stderr', new_callable=io.StringIO)
-    def test_given_log_with_some_missing_deps_then_fails(self, stderr: io.StringIO):
+    def test_given_log_with_some_missing_packages_then_fails(self, stderr: io.StringIO):
         self.setup_descriptors_and_log(log_content='''
             2023-03-30T13:46:13.0262830Z DEBUG: logs
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.freemarker:freemarker in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
@@ -86,7 +85,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
         self.assertNotIn('example:lib', stderr)
 
     @mock.patch('sys.stderr', new_callable=io.StringIO)
-    def test_given_log_with_no_missing_deps_then_succeeds(self, stderr: io.StringIO):
+    def test_given_log_with_no_missing_package_then_succeeds(self, stderr: io.StringIO):
         self.setup_descriptors_and_log(log_content='''
             2023-03-30T13:46:13.0262830Z DEBUG: logs
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.freemarker:freemarker in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
@@ -99,7 +98,8 @@ class TestCheckRenovateMatches(unittest.TestCase):
             main(self.descriptors_dir, renovate_debug_log=self.renovate_log)
             self.assertEqual(stderr.getvalue(), '')
         except SystemExit as exit:
-            raise AssertionError(f"Unexpected system exit {exit.code}. Stderr: {stderr.getvalue()}")
+            msg = f"Unexpected system exit {exit.code}. Stderr: {stderr.getvalue()}"
+            raise AssertionError(msg)
 
 
 if __name__ == '__main__':
