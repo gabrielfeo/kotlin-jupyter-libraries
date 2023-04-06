@@ -1,7 +1,8 @@
 name: 'Check PR'
 
 on:
-  pull_request
+  pull_request:
+  workflow_dispatch:
 
 jobs:
   check_renovate_matches:
@@ -20,13 +21,14 @@ jobs:
       - name: 'Check Renovate can match dependencies of all descriptors'
         run: .github/scripts/check_renovate_matches.py renovate.log > check_output.log
       - name: 'Build helpful PR comment'
+        if: ${{ github.event.pull_request && job.status == 'failure' }}
         run: |
           echo -e 'The following aren't matched by any Renovate manager:\n\n```' > comment.md
           cat check_output.log > comment.md
           echo -e '```\n'
       - name: Find existing comment
         uses: peter-evans/find-comment@v2
-        if: ${{ job.status == 'failure' }}
+        if: ${{ github.event.pull_request && job.status == 'failure' }}
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -34,7 +36,7 @@ jobs:
           body-includes: 'Generated API diff'
       - name: Create or update diff comment
         uses: peter-evans/create-or-update-comment@v2
-        if: ${{ job.status == 'failure' }}
+        if: ${{ github.event.pull_request && job.status == 'failure' }}
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
