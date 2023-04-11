@@ -20,6 +20,7 @@ jobs:
           RENOVATE_DRY_RUN: 'extract'
           RENOVATE_USE_BASE_BRANCH_CONFIG: 'merge'
           RENOVATE_BASE_BRANCHES: "${{ github.head_ref }}"
+      - run: cat /tmp/renovate.log
       - name: 'Check Renovate log for unmatched dependencies'
         id: check
         shell: bash
