@@ -21,16 +21,17 @@ jobs:
           RENOVATE_USE_BASE_BRANCH_CONFIG: 'merge'
           RENOVATE_BASE_BRANCHES: "${{ github.ref_name }}"
       - name: 'Check Renovate log for unmatched dependencies'
-        run: .github/scripts/check_renovate_matches.py /tmp/renovate.log > check_output.log
-      - name: 'Build helpful PR comment'
-        if: ${{ github.event.pull_request && job.status == 'failure' }}
+        id: check
+        run: .github/scripts/check_renovate_matches.py /tmp/renovate.log | tee unmatched.log
+      - name: 'Build failure PR comment'
+        if: ${{ steps.check.outcome == 'failure' && github.event.pull_request }}
         run: |
           echo -e 'The following aren't matched by any Renovate manager:\n\n```' > comment.md
-          cat check_output.log > comment.md
-          echo -e '```\n'
+          cat unmatched.log >> comment.md
+          echo -e '```\n' >> comment.md
       - name: Find existing comment
         uses: peter-evans/find-comment@v2
-        if: ${{ github.event.pull_request && job.status == 'failure' }}
+        if: ${{ steps.check.outcome == 'failure' && github.event.pull_request }}
         id: find-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
@@ -38,7 +39,7 @@ jobs:
           body-includes: 'Generated API diff'
       - name: Create or update diff comment
         uses: peter-evans/create-or-update-comment@v2
-        if: ${{ github.event.pull_request && job.status == 'failure' }}
+        if: ${{ steps.check.outcome == 'failure' && github.event.pull_request }}
         with:
           issue-number: ${{ github.event.pull_request.number }}
           comment-id: ${{ steps.find-comment.outputs.comment-id }}
