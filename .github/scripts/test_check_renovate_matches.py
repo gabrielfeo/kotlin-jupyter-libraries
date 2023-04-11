@@ -49,11 +49,14 @@ class TestCheckRenovateMatches(unittest.TestCase):
         with self.assertRaises(SystemExit) as context:
             main(self.test_args)
         self.assertEqual(context.exception.code, 1)
-        stdout = stdout.getvalue()
-        self.assertIn('org.freemarker:freemarker', stdout)
-        self.assertIn('org.nd4j:nd4j-api', stdout)
-        self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stdout)
-        self.assertIn('example:lib', stdout)
+        stdout = stdout.getvalue().strip().splitlines()
+        expected_lines = [
+            'example:lib',
+            'org.freemarker:freemarker',
+            'org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13',
+            'org.nd4j:nd4j-api',
+        ]
+        self.assertListEqual(expected_lines, sorted(stdout))
 
     def setup_test_args(self, log_content):
         self.renovate_log = NamedTemporaryFile('w+')
@@ -85,11 +88,11 @@ class TestCheckRenovateMatches(unittest.TestCase):
         with self.assertRaises(SystemExit) as context:
             main(self.test_args)
         self.assertEqual(context.exception.code, 1)
-        stdout = stdout.getvalue()
-        self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stdout)
-        self.assertNotIn('org.freemarker:freemarker', stdout)
-        self.assertNotIn('org.nd4j:nd4j-api', stdout)
-        self.assertNotIn('example:lib', stdout)
+        stdout = stdout.getvalue().strip().splitlines()
+        expected_lines = [
+            'org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13',
+        ]
+        self.assertListEqual(expected_lines, sorted(stdout))
 
     @mock.patch('sys.stdout', new_callable=io.StringIO)
     @mock.patch('sys.stderr')
