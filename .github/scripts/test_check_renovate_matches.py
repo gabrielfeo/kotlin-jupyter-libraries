@@ -42,17 +42,18 @@ class TestCheckRenovateMatches(unittest.TestCase):
         self.tempdir.cleanup()
         self.renovate_log.close()
 
-    @mock.patch('sys.stderr', new_callable=io.StringIO)
-    def test_given_empty_log_then_fails(self, stderr: io.StringIO):
+    @mock.patch('sys.stdout', new_callable=io.StringIO)
+    @mock.patch('sys.stderr')
+    def test_given_empty_log_then_fails(self, _, stdout: io.StringIO):
         self.setup_test_args(log_content='')
         with self.assertRaises(SystemExit) as context:
             main(self.test_args)
         self.assertEqual(context.exception.code, 1)
-        stderr = stderr.getvalue()
-        self.assertIn('org.freemarker:freemarker', stderr)
-        self.assertIn('org.nd4j:nd4j-api', stderr)
-        self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stderr)
-        self.assertIn('example:lib', stderr)
+        stdout = stdout.getvalue()
+        self.assertIn('org.freemarker:freemarker', stdout)
+        self.assertIn('org.nd4j:nd4j-api', stdout)
+        self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stdout)
+        self.assertIn('example:lib', stdout)
 
     def setup_test_args(self, log_content):
         self.renovate_log = NamedTemporaryFile('w+')
@@ -70,8 +71,10 @@ class TestCheckRenovateMatches(unittest.TestCase):
             self.renovate_log.name,
         ]
 
-    @mock.patch('sys.stderr', new_callable=io.StringIO)
-    def test_given_log_with_some_missing_packages_then_fails(self, stderr: io.StringIO):
+    @mock.patch('sys.stdout', new_callable=io.StringIO)
+    @mock.patch('sys.stderr')
+    def test_given_log_with_some_missing_packages_then_fails(self, _,
+                                                             stdout: io.StringIO):
         self.setup_test_args(log_content='''
             2023-03-30T13:46:13.0262830Z DEBUG: logs
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.freemarker:freemarker in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
@@ -82,14 +85,16 @@ class TestCheckRenovateMatches(unittest.TestCase):
         with self.assertRaises(SystemExit) as context:
             main(self.test_args)
         self.assertEqual(context.exception.code, 1)
-        stderr = stderr.getvalue()
-        self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stderr)
-        self.assertNotIn('org.freemarker:freemarker', stderr)
-        self.assertNotIn('org.nd4j:nd4j-api', stderr)
-        self.assertNotIn('example:lib', stderr)
+        stdout = stdout.getvalue()
+        self.assertIn('org.jetbrains.kotlinx.spark:jupyter_3.3.1_2.13', stdout)
+        self.assertNotIn('org.freemarker:freemarker', stdout)
+        self.assertNotIn('org.nd4j:nd4j-api', stdout)
+        self.assertNotIn('example:lib', stdout)
 
-    @mock.patch('sys.stderr', new_callable=io.StringIO)
-    def test_given_log_with_no_missing_package_then_succeeds(self, stderr: io.StringIO):
+    @mock.patch('sys.stdout', new_callable=io.StringIO)
+    @mock.patch('sys.stderr')
+    def test_given_log_with_no_missing_package_then_succeeds(self, _,
+                                                             stdout: io.StringIO):
         self.setup_test_args(log_content='''
             2023-03-30T13:46:13.0262830Z DEBUG: logs
             2023-03-30T13:46:13.0262830Z DEBUG: Looking up org.freemarker:freemarker in repository https://repo.maven.apache.org/maven2/ (repository=kotlin/example)
@@ -100,9 +105,9 @@ class TestCheckRenovateMatches(unittest.TestCase):
         ''')
         try:
             main(self.test_args)
-            self.assertEqual(stderr.getvalue(), '')
+            self.assertEqual(stdout.getvalue(), '')
         except SystemExit as exit:
-            msg = f"Unexpected system exit {exit.code}. Stderr: {stderr.getvalue()}"
+            msg = f"Unexpected system exit {exit.code}. stdout: {stdout.getvalue()}"
             raise AssertionError(msg)
 
 
