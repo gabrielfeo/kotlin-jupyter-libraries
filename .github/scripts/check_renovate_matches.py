@@ -34,7 +34,7 @@ def main(argv=None):
         print('\n'.join(unmatched))
         exit(1)
     else:
-        print("All packages were matched")
+        print("All packages were matched", file=sys.stderr)
 
 
 def parse_descriptor_dependencies(descriptors_dir: Path):
