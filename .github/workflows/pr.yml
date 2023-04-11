@@ -22,6 +22,7 @@ jobs:
           RENOVATE_BASE_BRANCHES: "${{ github.ref }}"
       - name: 'Check Renovate log for unmatched dependencies'
         id: check
+        shell: bash
         run: .github/scripts/check_renovate_matches.py /tmp/renovate.log | tee unmatched.log
       - name: 'Build failure PR comment'
         if: ${{ steps.check.outcome == 'failure' && github.event.pull_request }}
