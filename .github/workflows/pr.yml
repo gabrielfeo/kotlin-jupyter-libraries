@@ -15,9 +15,8 @@ jobs:
           token: ${{ secrets.RENOVATE_GITHUB_TOKEN }}
           configurationFile: '.github/workflows/renovate-config.js'
         env:
-          RENOVATE_LOG_FILE: '/tmp/renovate.log'
-          LOG_LEVEL: 'info'
-          RENOVATE_LOG_FILE_LEVEL: 'info'
+          RENOVATE_LOG_FILE: '/tmp/renovate-log.ndjson'
+          RENOVATE_LOG_FILE_LEVEL: 'debug'
           RENOVATE_DRY_RUN: 'extract'
           RENOVATE_USE_BASE_BRANCH_CONFIG: 'merge'
           RENOVATE_BASE_BRANCHES: "${{ github.head_ref }}"
@@ -25,7 +24,7 @@ jobs:
       - name: 'Check Renovate log for unmatched dependencies'
         id: check
         shell: bash
-        run: .github/scripts/check_renovate_matches.py /tmp/renovate.log | tee unmatched.log
+        run: .github/scripts/check_renovate_matches.py /tmp/renovate-log.ndjson | tee unmatched.log
       - name: 'Build failure PR comment'
         if: ${{ steps.check.outcome == 'failure' && github.event.pull_request }}
         run: |
