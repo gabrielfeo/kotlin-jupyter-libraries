@@ -18,6 +18,8 @@ jobs:
           RENOVATE_LOG_FILE: '/tmp/renovate.log'
           RENOVATE_LOG_FILE_LEVEL: 'info'
           RENOVATE_DRY_RUN: 'extract'
+          RENOVATE_USE_BASE_BRANCH_CONFIG: 'merge'
+          RENOVATE_BASE_BRANCHES: "${{ github.ref_name }}"
       - name: 'Check Renovate log for unmatched dependencies'
         run: .github/scripts/check_renovate_matches.py /tmp/renovate.log > check_output.log
       - name: 'Build helpful PR comment'
