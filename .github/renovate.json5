@@ -145,8 +145,8 @@
       "matchStringsStrategy": "combination",
       "matchStrings": [
         "\"spark\": ?\"(?<spark>.+?)\"",
-        "\"scala\": ?\"(?<scala>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
+        "\"a\": ?\"(?<scala>.+?)\"",
+        "\"f\": ?\"(?<currentValue>.+?)\""
       ],
       "depNameTemplate": "org.jetbrains.kotlinx.spark:jupyter_{{{spark}}}_{{{scala}}}"
     }
