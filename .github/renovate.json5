@@ -136,19 +136,5 @@
       ],
       "depNameTemplate": "org.deeplearning4j:deeplearning4j-cuda-{{{cuda}}}"
     },
-    // for org.jetbrains.kotlinx.spark:jupyter_$spark_$scala:$v in spark*.json
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "spark.*\\.json"
-      ],
-      "matchStringsStrategy": "combination",
-      "matchStrings": [
-        "\"spark\": ?\"(?<spark>.+?)\"",
-        "\"scala\": ?\"(?<scala>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "org.jetbrains.kotlinx.spark:jupyter_{{{spark}}}_{{{scala}}}"
-    }
   ]
 }
