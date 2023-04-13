@@ -25,16 +25,20 @@ parser.add_argument('--descriptors-dir',
 
 def main(argv=None):
     args = parser.parse_args(argv)
-    print("Parsing dependencies of library descriptors...", file=sys.stderr)
+    log("Parsing dependencies of library descriptors...", file=sys.stderr)
     packages = parse_descriptor_dependencies(args.descriptors_dir)
-    print(f"Checking packages matched by Renovate in '{args.log}'...", file=sys.stderr)
+    log(f"Checking packages matched by Renovate in '{args.log}'...", file=sys.stderr)
     unmatched = get_packages_not_in_log(packages, args.log)
     if unmatched:
-        print("Unmatched packages:", file=sys.stderr)
-        print('\n'.join(unmatched))
+        log("Unmatched packages:", file=sys.stderr)
+        log('\n'.join(unmatched), file=sys.stdout)
         exit(1)
     else:
-        print("All packages were matched", file=sys.stderr)
+        log("All packages were matched", file=sys.stderr)
+
+
+def log(msg, file):
+    print(msg, file=file, flush=True)
 
 
 def parse_descriptor_dependencies(descriptors_dir: Path):
@@ -43,7 +47,7 @@ def parse_descriptor_dependencies(descriptors_dir: Path):
         for dependency in extract_dependencies(descriptor):
             package = dependency_to_package_name(dependency)
             packages.add(package)
-            print(f"[{path}] {package}", file=sys.stderr)
+            log(f"[{path}] {package}", file=sys.stderr)
     return packages
 
 
