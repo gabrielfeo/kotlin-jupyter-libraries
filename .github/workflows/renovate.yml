@@ -21,4 +21,5 @@ jobs:
           token: ${{ secrets.RENOVATE_GITHUB_TOKEN }}
           configurationFile: '.github/workflows/renovate-runner-config.js'
         env:
-          LOG_LEVEL: 'info'
+          LOG_LEVEL: ${{ vars.RENOVATE_LOG_LEVEL || 'info' }}
+          RENOVATE_RECREATE_CLOSED: ${{ vars.RENOVATE_RECREATE_CLOSED || 'false' }}
