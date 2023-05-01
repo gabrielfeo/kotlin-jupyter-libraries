@@ -18,137 +18,24 @@
       ]
     }
   ],
-  // One manager for each "pattern" of interpolated variables, e.g. one manager to match
-  // "g:a:$v" and another to match "g:a:$version". More complex interpolations such as
-  // "g:a-jdk$jdkVersion:$v" need their own manager. The comment above each manager declares
-  // its intent.
   "regexManagers": [
-    // for all dependencies with no interpolated properties
+    // for dependencies with no interpolated properties
     {
       "datasourceTemplate": "maven",
-      "fileMatch": [".*\\.json"],
+      "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
         "\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
-    // for all dependencies that interpolate $version only
+    // for dependencies that interpolate a property that is commented with "update: package=*"
     {
       "datasourceTemplate": "maven",
-      "fileMatch": [".*\\.json"],
+      "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "(?s)\"version\": ?\"(?<currentValue>.+?)\".*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$version\""
+        "\/\/ update: package=(?<depName>\\S+)\\s+\".*?\": ?\"(?<currentValue>.+?)\""
       ]
     },
-    // for all dependencies that interpolate $v only
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [".*\\.json"],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "(?s)\"v\": ?\"(?<currentValue>.+?)\".*\"(?<depName>[^\":\\$]+:[^\":\\$]+):\\$v\""
-      ]
-    },
-    // for deeplearning4j*.json, dependencies that interpolate $slf4j
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "deeplearning4j.*\\.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "(?s)\"slf4j\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$slf4j\""
-      ]
-    },
-    // for deeplearning4j*.json, dependencies that interpolate $freemarker
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "deeplearning4j.*\\.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "(?s)\"freemarker\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$freemarker\""
-      ]
-    },
-    // for lets-plot*.json, dependencies that interpolate $gt, $api or $lib
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "lets-plot.*\\.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "(?s)\"gt\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$gt\"",
-        "(?s)\"api\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$api\"",
-        "(?s)\"lib\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$lib\""
-      ]
-    },
-    // for ggdsl*.json, dependencies that interpolate $ggDSLVersion
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "ggdsl.*\\.json"
-      ],
-      "matchStringsStrategy": "any",
-      "matchStrings": [
-        "(?s)\"ggDSLVersion\": ?\"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$ggDSLVersion\"",
-        "(?s){\"name\": \"ggDSLVersion\", \"value\": \"(?<currentValue>.+?)\".*\"(?<depName>.+?:.+?):\\$ggDSLVersion\""
-      ]
-    },
-    // for org.nd4j:nd4j-cuda-$cuda:$v in deeplearning4j*.json
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "deeplearning4j.*\\.json"
-      ],
-      "matchStringsStrategy": "combination",
-      "matchStrings": [
-        "\"cuda\": ?\"(?<cuda>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}"
-    },
-    // for org.nd4j:nd4j-cuda-$cuda-platform:$v in deeplearning4j*.json
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "deeplearning4j.*\\.json"
-      ],
-      "matchStringsStrategy": "combination",
-      "matchStrings": [
-        "\"cuda\": ?\"(?<cuda>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "org.nd4j:nd4j-cuda-{{{cuda}}}-platform"
-    },
-    // for org.deeplearning4j:deeplearning4j-cuda-$cuda:$v in deeplearning4j*.json
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "deeplearning4j.*\\.json"
-      ],
-      "matchStringsStrategy": "combination",
-      "matchStrings": [
-        "\"cuda\": ?\"(?<cuda>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "org.deeplearning4j:deeplearning4j-cuda-{{{cuda}}}"
-    },
-    // for org.jetbrains.kotlinx.spark:jupyter_$spark_$scala:$v in spark*.json
-    {
-      "datasourceTemplate": "maven",
-      "fileMatch": [
-        "spark.*\\.json"
-      ],
-      "matchStringsStrategy": "combination",
-      "matchStrings": [
-        "\"spark\": ?\"(?<spark>.+?)\"",
-        "\"scala\": ?\"(?<scala>.+?)\"",
-        "\"v\": ?\"(?<currentValue>.+?)\""
-      ],
-      "depNameTemplate": "org.jetbrains.kotlinx.spark:jupyter_{{{spark}}}_{{{scala}}}"
-    }
   ]
 }

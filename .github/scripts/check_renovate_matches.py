@@ -1,9 +1,5 @@
 #!/usr/bin/env python3
-"""Check that Renovate can match all dependencies in library descriptors.
-
-Errors in this check mean regex matchers in renovate.json should be
-adjusted to match the missing libraries.
-"""
+"""Check that Renovate detects all dependencies in library descriptors."""
 
 import argparse
 import json
