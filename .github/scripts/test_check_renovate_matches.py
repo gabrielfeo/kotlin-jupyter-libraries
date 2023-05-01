@@ -10,6 +10,7 @@ import io
 LIB1_DESCRIPTOR = '''
     {
         "properties": [
+            // update: package=org.nd4j:nd4j-api
             {"name": "version", "value": "0.3.2"},
             {"name": "applyColorScheme", "value": "true"}
         ],
@@ -24,6 +25,7 @@ LIB2_DESCRIPTOR = '''
         "properties": {
             "spark": "3.3.1",
             "scala": "2.13",
+            // update: package=org.jetbrains.kotlinx.spark:jupyter_2.13_3.3.1
             "v": "1.2.3",
             "freemarker": "2.3.29"
         },
@@ -65,7 +67,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
         self.renovate_log.seek(0)
         self.tempdir = TemporaryDirectory()
         self.descriptors_dir = Path(self.tempdir.name)
-        with open(self.descriptors_dir/'lib1.json', 'w') as lib1:
+        with open(self.descriptors_dir/'lib1.json5', 'w') as lib1:
             lib1.write(LIB1_DESCRIPTOR)
         with open(self.descriptors_dir/'lib2.json5', 'w') as lib2:
             lib2.write(LIB2_DESCRIPTOR)

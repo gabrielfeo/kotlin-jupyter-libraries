@@ -2,7 +2,7 @@
 """Check that Renovate detects all dependencies in library descriptors."""
 
 import argparse
-import json
+import json5
 from pathlib import Path
 import re
 import sys
@@ -50,7 +50,7 @@ def parse_descriptor_dependencies(descriptors_dir: Path):
 def get_library_descriptors(dir: Path):
     """Get library descriptors in JSON format"""
     for path in dir.glob('*.json*'):
-        yield path, json.loads(path.read_text())
+        yield path, json5.loads(path.read_text())
 
 
 def extract_dependencies(descriptor: dict):
