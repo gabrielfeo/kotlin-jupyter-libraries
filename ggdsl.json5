@@ -1,6 +1,7 @@
 {
   "description": "Kotlin plotting DSL for Lets-Plot",
   "properties": [
+    // org.jetbrains.kotlinx:ggdsl-lets-plot
     {"name": "ggDSLVersion", "value": "0.3.2"},
     {"name": "applyColorScheme", "value": "true"}
   ],

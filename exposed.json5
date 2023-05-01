@@ -1,6 +1,7 @@
 {
   "description": "Kotlin SQL framework",
   "properties": {
+    // org.jetbrains.exposed:exposed-core
     "v": "0.41.1"
   },
   "link": "https://github.com/JetBrains/Exposed",

@@ -1,9 +1,12 @@
 {
   "description": "Deep learning library for the JVM (CUDA support)",
   "properties": {
+    // org.nd4j:nd4j-api
     "v": "1.0.0-beta6",
     "cuda": "10.2",
+    // org.slf4j:slf4j-api
     "slf4j": "1.7.25",
+    // org.freemarker:freemarker
     "freemarker": "2.3.29"
   },
   "link": "https://github.com/eclipse/deeplearning4j",

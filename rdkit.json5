@@ -1,6 +1,7 @@
 {
   "description": "Open-Source Cheminformatics Software",
   "properties": {
+    // org.jetbrains.kotlinx:rdkit-jupyter
     "v": "1.0.0"
   },
   "link": "https://www.rdkit.org/",

@@ -1,6 +1,7 @@
 {
   "description": "Idiomatic statistical operators for Kotlin",
   "properties": {
+    // com.github.thomasnield:kotlin-statistics
     "v": "-SNAPSHOT"
   },
   "link": "https://github.com/thomasnield/kotlin-statistics",

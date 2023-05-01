@@ -1,6 +1,7 @@
 {
   "description": "[beta] Plotly.kt jupyter integration for dynamic plots.",
   "properties": {
+    // space.kscience:plotlykt-server
     "v": "0.4.0"
   },
   "link": "https://github.com/mipt-npm/plotly.kt",

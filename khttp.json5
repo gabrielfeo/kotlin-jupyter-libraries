@@ -1,6 +1,7 @@
 {
   "description": "HTTP networking library",
   "properties": {
+    // com.github.jkcclemens:khttp
     "v": "39f76b4186"
   },
   "link": "https://github.com/jkcclemens/khttp",

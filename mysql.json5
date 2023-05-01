@@ -1,6 +1,7 @@
 {
   "description": "MySql JDBC Connector",
   "properties": {
+    // mysql:mysql-connector-java
     "v": "8.0.17"
   },
   "link": "https://github.com/mysql/mysql-connector-j",

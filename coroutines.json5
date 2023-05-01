@@ -1,6 +1,7 @@
 {
   "description": "Asynchronous programming and reactive streams support",
   "properties": {
+    // org.jetbrains.kotlinx:kotlinx-coroutines-core
     "v": "1.5.2"
   },
   "link": "https://github.com/Kotlin/kotlinx.coroutines",
