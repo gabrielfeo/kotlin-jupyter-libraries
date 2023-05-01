@@ -2,7 +2,7 @@
   "description": "Discrete event simulator",
   "properties": {
     // update: package=com.github.holgerbrandl:kalasim
-    "v": "0.7.92"
+    "v": "0.9.1"
   },
   "link": "https://www.kalasim.org",
   "dependencies": [
