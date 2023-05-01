@@ -2,7 +2,7 @@
   "description": "MySql JDBC Connector",
   "properties": {
     // update: package=mysql:mysql-connector-java
-    "v": "8.0.17"
+    "v": "8.0.33"
   },
   "link": "https://github.com/mysql/mysql-connector-j",
   "dependencies": [
