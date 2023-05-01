@@ -34,7 +34,8 @@
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\/\/ update: package=(?<depName>\\S+)\\s+\".*?\": ?\"(?<currentValue>.+?)\""
+        "\/\/ update: package=(?<depName>\\S+)\\s+\".*?\": ?\"(?<currentValue>.+?)\"",
+        "\/\/ update: package=(?<depName>\\S+)\\s+{\"name\": \".*?\", \"value\": \"(?<currentValue>.+?)\"",
       ]
     },
   ]
