@@ -49,7 +49,7 @@ def parse_descriptor_dependencies(descriptors_dir: Path):
 
 def get_library_descriptors(dir: Path):
     """Get library descriptors in JSON format"""
-    for path in dir.glob('*.json'):
+    for path in dir.glob('*.json*'):
         yield path, json.loads(path.read_text())
 
 

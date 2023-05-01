@@ -67,7 +67,7 @@ class TestCheckRenovateMatches(unittest.TestCase):
         self.descriptors_dir = Path(self.tempdir.name)
         with open(self.descriptors_dir/'lib1.json', 'w') as lib1:
             lib1.write(LIB1_DESCRIPTOR)
-        with open(self.descriptors_dir/'lib2.json', 'w') as lib2:
+        with open(self.descriptors_dir/'lib2.json5', 'w') as lib2:
             lib2.write(LIB2_DESCRIPTOR)
         self.test_args = [
             '--descriptors-dir', str(self.descriptors_dir),
