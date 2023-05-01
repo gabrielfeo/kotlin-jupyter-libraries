@@ -18,10 +18,13 @@
       ]
     }
   ],
+  "commitMessageTopic": "{{{packageFile}}} `{{{depName}}}`",
+  "additionalBranchPrefix": "{{{packageFile}}}/",
   "regexManagers": [
     // for dependencies with no interpolated properties
     {
       "datasourceTemplate": "maven",
+      "versioningTemplate": "maven",
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
@@ -31,11 +34,12 @@
     // for dependencies that interpolate a property that is commented with "update: package=*"
     {
       "datasourceTemplate": "maven",
+      "versioningTemplate": "maven",
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\/\/ update: package=(?<depName>\\S+)\\s+\".*?\": ?\"(?<currentValue>.+?)\"",
-        "\/\/ update: package=(?<depName>\\S+)\\s+{\"name\": \".*?\", \"value\": \"(?<currentValue>.+?)\"",
+        "\/\/ update: package=(?<packageName>\\S+)\\s+\"(?<depName>.*?)\": ?\"(?<currentValue>.+?)\"",
+        "\/\/ update: package=(?<packageName>\\S+)\\s+{\"name\": \"(?<depName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
       ]
     },
   ]
