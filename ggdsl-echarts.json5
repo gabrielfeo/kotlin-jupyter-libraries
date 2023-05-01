@@ -1,7 +1,7 @@
 {
   "description": "Kotlin plotting DSL for Apache ECharts",
   "properties": {
-    // org.jetbrains.kotlinx:ggdsl-echarts
+    // update: package=org.jetbrains.kotlinx:ggdsl-echarts
     "ggDSLVersion": "0.3.2"
   },
   "link": "https://github.com/AndreiKingsley/lib-ggdsl",

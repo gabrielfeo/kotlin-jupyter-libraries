@@ -1,7 +1,7 @@
 {
   "description": "Kotlin framework for structured data processing",
   "properties": {
-    // org.jetbrains.kotlinx:dataframe
+    // update: package=org.jetbrains.kotlinx:dataframe
     "v": "0.9.1"
   },
   "repositories": [
