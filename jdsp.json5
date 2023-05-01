@@ -2,7 +2,7 @@
   "description": "Java library for signal processing",
   "properties": {
     // update: package=com.github.psambit9791:jdsp
-    "v": "0.5.1"
+    "v": "v2.0.1"
   },
   "link": "https://github.com/psambit9791/jDSP",
   "dependencies": [
