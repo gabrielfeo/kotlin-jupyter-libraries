@@ -33,9 +33,11 @@
       "datasourceTemplate": "maven",
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
+      "packageNameTemplate": "{{{package}}}",
+      "depNameTemplate": "{{{packageFile}}}/{{{varName}}}",
       "matchStrings": [
-        "\/\/ update: package=(?<depName>\\S+)\\s+\".*?\": ?\"(?<currentValue>.+?)\"",
-        "\/\/ update: package=(?<depName>\\S+)\\s+{\"name\": \".*?\", \"value\": \"(?<currentValue>.+?)\"",
+        "\/\/ update: package=(?<package>\\S+)\\s+\"(?<varName>.*?)\": ?\"(?<currentValue>.+?)\"",
+        "\/\/ update: package=(?<package>\\S+)\\s+{\"name\": \"(?<varName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
       ]
     },
   ]
