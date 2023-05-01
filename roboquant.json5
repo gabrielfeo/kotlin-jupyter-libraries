@@ -3,7 +3,7 @@
   "link": "https://roboquant.org",
   "properties": {
     // update: package=org.roboquant:roboquant-jupyter
-    "version": "1.2.0"
+    "version": "1.4.0"
   },
   "repositories": [
     "https://s01.oss.sonatype.org/content/repositories/snapshots"
