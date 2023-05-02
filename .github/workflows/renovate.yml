@@ -16,7 +16,7 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v3
       - name: 'Run Renovate'
-        uses: renovatebot/github-action@v36.0.0
+        uses: renovatebot/github-action@v36.0.4
         with:
           token: ${{ secrets.RENOVATE_GITHUB_TOKEN }}
           configurationFile: '.github/workflows/renovate-runner-config.js'
