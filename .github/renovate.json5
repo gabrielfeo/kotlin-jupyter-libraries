@@ -45,7 +45,7 @@
   "additionalBranchPrefix": "{{{packageFile}}}/",
   "commitMessageTopic": "{{{packageFile}}} `{{{depName}}}`",
   "prBodyDefinitions": {
-    "Name": "`{{{depNameLinked}}}`",
+    "Name": "{{{depNameLinked}}}",
     "Package": "`{{{packageName}}}`",
   },
   "prBodyColumns": [
