@@ -2,7 +2,7 @@
   "description": "Statistical Machine Intelligence and Learning Engine",
   "properties": {
     // update: package=com.github.haifengl:smile-kotlin
-    "v": "2.4.0"
+    "v": "3.0.1"
   },
   "link": "https://github.com/haifengl/smile",
   "dependencies": [
