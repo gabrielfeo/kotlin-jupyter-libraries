@@ -4,6 +4,7 @@
     "group:recommended",
     "workarounds:all"
   ],
+  "recreateClosed": true,
   "dependencyDashboard": "true",
   "branchConcurrentLimit": 0,
   "prConcurrentLimit": 0,
