@@ -43,17 +43,9 @@
     },
   ],
   "additionalBranchPrefix": "{{{packageFile}}}/",
-  "commitMessageTopic": "{{{packageFile}}} `{{{depName}}}`",
+  "commitMessageTopic": "{{{replace '.json5' '' packageFile}}} `{{{depName}}}`",
   "prBodyDefinitions": {
-    "Name": "{{{depNameLinked}}}",
-    "Package": "`{{{packageName}}}`",
+    // If depName != packageName, then depName is a prop like "v", so add packageName as well
+    "Package": "{{{depNameLinked}}}{{#if (equals depName packageName)}}{{else}} `{{{packageName}}}`{{/if}}",
   },
-  "prBodyColumns": [
-    "Name",
-    "Package",
-    "Type",
-    "Update",
-    "Change",
-    "Pending"
-  ]
 }
