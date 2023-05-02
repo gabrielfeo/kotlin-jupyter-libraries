@@ -17,8 +17,6 @@
       ]
     }
   ],
-  "commitMessageTopic": "{{{packageFile}}} `{{{depName}}}`",
-  "additionalBranchPrefix": "{{{packageFile}}}/",
   "regexManagers": [
     // matches dependencies with hardcoded versions (no interpolated properties)
     {
@@ -43,5 +41,19 @@
         "\/\/ update: package=(?<packageName>\\S+)\\s+{\"name\": \"(?<depName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
       ]
     },
+  ],
+  "additionalBranchPrefix": "{{{packageFile}}}/",
+  "commitMessageTopic": "{{{packageFile}}} `{{{depName}}}`",
+  "prBodyDefinitions": {
+    "Name": "`{{{depNameLinked}}}`",
+    "Package": "`{{{packageName}}}`",
+  },
+  "prBodyColumns": [
+    "Name",
+    "Package",
+    "Type",
+    "Update",
+    "Change",
+    "Pending"
   ]
 }
