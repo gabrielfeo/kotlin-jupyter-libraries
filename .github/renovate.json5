@@ -4,7 +4,6 @@
     "group:recommended",
     "workarounds:all"
   ],
-  "branchPrefix": "renovate/",
   "branchConcurrentLimit": 0,
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
@@ -21,7 +20,7 @@
   "commitMessageTopic": "{{{packageFile}}} `{{{depName}}}`",
   "additionalBranchPrefix": "{{{packageFile}}}/",
   "regexManagers": [
-    // for dependencies with no interpolated properties
+    // matches dependencies with hardcoded versions (no interpolated properties)
     {
       "datasourceTemplate": "maven",
       "versioningTemplate": "maven",
@@ -31,14 +30,16 @@
         "\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
-    // for dependencies that interpolate a property that is commented with "update: package=*"
+    // matches properties commented with "update: package=*"
     {
       "datasourceTemplate": "maven",
       "versioningTemplate": "maven",
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
+        // matches syntax "v": "1.0"
         "\/\/ update: package=(?<packageName>\\S+)\\s+\"(?<depName>.*?)\": ?\"(?<currentValue>.+?)\"",
+        // matches syntax { "name": "v", "value": "1.0" }
         "\/\/ update: package=(?<packageName>\\S+)\\s+{\"name\": \"(?<depName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
       ]
     },
