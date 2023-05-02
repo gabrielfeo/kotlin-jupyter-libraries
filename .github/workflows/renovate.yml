@@ -23,3 +23,4 @@ jobs:
         env:
           LOG_LEVEL: ${{ vars.RENOVATE_LOG_LEVEL || 'info' }}
           RENOVATE_RECREATE_CLOSED: ${{ vars.RENOVATE_RECREATE_CLOSED || 'false' }}
+          RENOVATE_REPOSITORIES: "['${{ github.repository }}']"
