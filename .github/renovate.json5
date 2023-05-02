@@ -4,6 +4,7 @@
     "group:recommended",
     "workarounds:all"
   ],
+  "dependencyDashboard": "true",
   "branchConcurrentLimit": 0,
   "prConcurrentLimit": 0,
   "prHourlyLimit": 0,
