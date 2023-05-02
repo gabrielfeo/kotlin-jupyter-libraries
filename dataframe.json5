@@ -2,7 +2,7 @@
   "description": "Kotlin framework for structured data processing",
   "properties": {
     // update: package=org.jetbrains.kotlinx:dataframe
-    "v": "0.9.1"
+    "v": "0.10.0"
   },
   "repositories": [
     "https://oss.sonatype.org/service/local/repo_groups/public/content"
