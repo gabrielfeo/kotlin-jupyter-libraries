@@ -47,6 +47,6 @@
   "commitMessageTopic": "{{{replace '.json5' '' packageFile}}} `{{{depName}}}`",
   "prBodyDefinitions": {
     // If depName != packageName, then depName is a prop like "v", so add packageName as well
-    "Package": "{{{depNameLinked}}}{{#if (equals depName packageName)}}{{else}} `{{{packageName}}}`{{/if}}",
+    "Package": "{{{depNameLinked}}}{{#if (equals depName packageName)}}{{else}} (`{{{packageName}}}`){{/if}}",
   },
 }
