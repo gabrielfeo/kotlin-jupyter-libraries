@@ -2,7 +2,7 @@
   "description": "Kotlin plotting DSL for Apache ECharts",
   "properties": {
     // update: package=org.jetbrains.kotlinx:kandy-echarts
-    "kandyVersion": "0.4.0"
+    "kandyVersion": "0.4.1"
   },
   "link": "https://github.com/Kotlin/kandy",
   "dependencies": [
