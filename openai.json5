@@ -2,7 +2,7 @@
   "description": "OpenAI API for Jupyter Notebooks",
   "properties": {
     // update: package=org.jetbrains.kotlin.ds:kotlin-openai
-    "version": "0.1.0"
+    "version": "0.1.1"
   },
   "link": "https://openai.com/blog/chatgpt",
   "repositories": [
