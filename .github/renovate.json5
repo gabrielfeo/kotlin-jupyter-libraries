@@ -21,6 +21,7 @@
         "https://repo.kotlin.link",
         "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers",
         "https://s01.oss.sonatype.org/content/repositories/snapshots",
+        "https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven",
       ]
     }
   ],
