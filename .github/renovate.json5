@@ -1,0 +1,63 @@
+{
+  "enabled": true,
+  "extends": [
+    "group:recommended",
+    "workarounds:all"
+  ],
+  "dependencyDashboard": "true",
+  "branchConcurrentLimit": 0,
+  "prConcurrentLimit": 0,
+  "prHourlyLimit": 0,
+  "rebaseWhen": "conflicted",
+  "packageRules": [
+    {
+      "matchDatasources": ["maven"],
+      // Every repository from every descriptor
+      "registryUrls": [
+        // Default kernel repositories
+        "https://repo.maven.apache.org/maven2/",
+        "https://jitpack.io/",
+        // Custom repositories from descriptors must be added here
+        "https://oss.sonatype.org/service/local/repo_groups/public/content",
+        "https://repo.osgeo.org/repository/release",
+        "https://repo.kotlin.link",
+        "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers",
+        "https://s01.oss.sonatype.org/content/repositories/snapshots",
+        "https://packages.jetbrains.team/maven/p/kds/kotlin-ds-maven",
+      ]
+    }
+  ],
+  "regexManagers": [
+    // Matches dependencies with hardcoded versions (no interpolated properties)
+    {
+      "datasourceTemplate": "maven",
+      "versioningTemplate": "maven",
+      "fileMatch": [".*\\.json5"],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        "^\\s*\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
+      ]
+    },
+    // Matches properties commented with "// update: package=group:artifact"
+    {
+      "datasourceTemplate": "maven",
+      "versioningTemplate": "maven",
+      "fileMatch": [".*\\.json5"],
+      "matchStringsStrategy": "any",
+      "matchStrings": [
+        // Matches syntax "v": "1.0"
+        "\/\/ update: package=(?<packageName>\\S+)\\s+\"(?<depName>.*?)\": ?\"(?<currentValue>.+?)\"",
+        // Matches syntax { "name": "v", "value": "1.0" }
+        "\/\/ update: package=(?<packageName>\\S+)\\s+{\"name\": \"(?<depName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
+      ]
+    },
+  ],
+  "additionalBranchPrefix": "{{{packageFile}}}/",
+  // Configures commit message "Update <descriptor-name> `<property-or-dependency>` to <version>"
+  "commitMessageTopic": "{{{replace '.json5' '' packageFile}}} `{{{depName}}}`",
+  // Configures the table added to PR descriptions
+  "prBodyDefinitions": {
+    // State full packageName if depName is a property like "v". That's the case whenever depName != packageName (see regexes).
+    "Package": "{{{depNameLinked}}}{{#if (equals depName packageName)}}{{else}} (`{{{packageName}}}`){{/if}}",
+  },
+}
