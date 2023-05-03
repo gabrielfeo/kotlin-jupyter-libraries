@@ -15,7 +15,12 @@
       "matchDatasources": ["maven"],
       "registryUrls": [
         "https://repo.maven.apache.org/maven2/",
-        "https://jitpack.io/"
+        "https://jitpack.io/",
+        "https://oss.sonatype.org/service/local/repo_groups/public/content",
+        "https://repo.osgeo.org/repository/release",
+        "https://repo.kotlin.link",
+        "https://maven.pkg.jetbrains.space/kotlin/p/kotlin/kotlin-js-wrappers",
+        "https://s01.oss.sonatype.org/content/repositories/snapshots",
       ]
     }
   ],
