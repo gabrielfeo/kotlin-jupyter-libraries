@@ -37,10 +37,10 @@
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        // matches syntax "v": "1.0"
-        "\/\/ update: package=(?<packageName>\\S+)\\s+\"(?<depName>.*?)\": ?\"(?<currentValue>.+?)\"",
-        // matches syntax { "name": "v", "value": "1.0" }
-        "\/\/ update: package=(?<packageName>\\S+)\\s+{\"name\": \"(?<depName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
+        // matches syntax "v": "1.0" | https://regex101.com/r/2ppnzm/1
+        "\/\/ update: package=(?<packageName>\\S+)(?: repository=(?<registryUrl>\\S+))?\\s+\"(?<depName>.+?)\": ?\"(?<currentValue>.+?)\"",
+        // matches syntax { "name": "v", "value": "1.0" } | https://regex101.com/r/75jL5E/1
+        "\/\/ update: package=(?<packageName>\\S+)(?: repository=(?<registryUrl>\\S+))?\\s+{ ?\"name\": ?\"(?<depName>.+?)\", ?\"value\": ?\"(?<currentValue>.+?)\"",
       ]
     },
   ],
