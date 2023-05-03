@@ -4,7 +4,6 @@
     "group:recommended",
     "workarounds:all"
   ],
-  "recreateClosed": true,
   "dependencyDashboard": "true",
   "branchConcurrentLimit": 0,
   "prConcurrentLimit": 0,
@@ -13,9 +12,12 @@
   "packageRules": [
     {
       "matchDatasources": ["maven"],
+      // Every repository from every descriptor
       "registryUrls": [
+        // Default kernel repositories
         "https://repo.maven.apache.org/maven2/",
         "https://jitpack.io/",
+        // Custom repositories from descriptors must be added here
         "https://oss.sonatype.org/service/local/repo_groups/public/content",
         "https://repo.osgeo.org/repository/release",
         "https://repo.kotlin.link",
@@ -26,7 +28,7 @@
     }
   ],
   "regexManagers": [
-    // matches dependencies with hardcoded versions (no interpolated properties)
+    // Matches dependencies with hardcoded versions (no interpolated properties)
     {
       "datasourceTemplate": "maven",
       "versioningTemplate": "maven",
@@ -36,24 +38,26 @@
         "^\\s*\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
-    // matches properties commented with "update: package=*"
+    // Matches properties commented with "// update: package=group:artifact"
     {
       "datasourceTemplate": "maven",
       "versioningTemplate": "maven",
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        // matches syntax "v": "1.0"
+        // Matches syntax "v": "1.0"
         "\/\/ update: package=(?<packageName>\\S+)\\s+\"(?<depName>.*?)\": ?\"(?<currentValue>.+?)\"",
-        // matches syntax { "name": "v", "value": "1.0" }
+        // Matches syntax { "name": "v", "value": "1.0" }
         "\/\/ update: package=(?<packageName>\\S+)\\s+{\"name\": \"(?<depName>.*?)\", \"value\": \"(?<currentValue>.+?)\"",
       ]
     },
   ],
   "additionalBranchPrefix": "{{{packageFile}}}/",
+  // Configures commit message "Update <descriptor-name> `<property-or-dependency>` to <version>"
   "commitMessageTopic": "{{{replace '.json5' '' packageFile}}} `{{{depName}}}`",
+  // Configures the table added to PR descriptions
   "prBodyDefinitions": {
-    // If depName != packageName, then depName is a prop like "v", so add packageName as well
+    // State full packageName if depName is a property like "v". That's the case whenever depName != packageName (see regexes).
     "Package": "{{{depNameLinked}}}{{#if (equals depName packageName)}}{{else}} (`{{{packageName}}}`){{/if}}",
   },
 }
