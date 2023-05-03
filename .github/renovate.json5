@@ -33,7 +33,7 @@
       "fileMatch": [".*\\.json5"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        "\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
+        "^\\s*\"(?<depName>[^\":\\$]+:[^\":\\$]+):(?<currentValue>[^\":\\$]+)\""
       ]
     },
     // matches properties commented with "update: package=*"
