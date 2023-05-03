@@ -4,7 +4,7 @@
     // update: package=org.nd4j:nd4j-api
     "v": "1.0.0-beta6",
     // update: package=org.slf4j:slf4j-api
-    "slf4j": "1.7.25",
+    "slf4j": "2.0.7",
     // update: package=org.freemarker:freemarker
     "freemarker": "2.3.29"
   },
