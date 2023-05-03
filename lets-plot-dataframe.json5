@@ -3,7 +3,7 @@
   "link": "https://github.com/JetBrains/lets-plot-kotlin",
   "properties": {
     // update: package=org.jetbrains.kotlinx:lets-plot-dsl
-    "v": "0.0.14-dev-15-0.11.0.44"
+    "v": "0.0.14-dev-15-0.11.0.52"
   },
   "repositories": [
     "https://oss.sonatype.org/service/local/repo_groups/public/content"
