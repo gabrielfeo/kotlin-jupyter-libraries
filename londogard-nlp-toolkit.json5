@@ -5,6 +5,9 @@
     // update: package=com.londogard:londogard-nlp-toolkit
     "v": "v1.0.0"
   },
+  "repositories": [
+    "https://jitpack.io"
+  ],
   "dependencies": [
     "com.londogard:londogard-nlp-toolkit:$v"
   ],
