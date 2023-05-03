@@ -69,7 +69,7 @@
     "val isolatedFrameParam = if(\"$isolatedFrame\".isNotEmpty()) \"$isolatedFrame\".toBoolean() else null",
     "val frontendContext = LetsPlot.setupNotebook(\"$js\", isolatedFrameParam) {DISPLAY(HTML(it))}",
     "LetsPlot.apiVersion = \"$api\"",
-    "// update: package=Load library JS",
+    "// Load library JS",
     "DISPLAY(HTML(frontendContext.getConfigureHtml()))"
   ],
   "renderers": {
