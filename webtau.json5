@@ -1,7 +1,7 @@
 {
   "description": "WebTau end-to-end testing across layers",
   "properties": {
-    // update: package=org.testingisdocumenting.webtau:webtau
+    "v-renovate-hint": "update: package=org.testingisdocumenting.webtau:webtau",
     "v": "1.53"
   },
   "link": "https://github.com/testingisdocumenting/webtau",

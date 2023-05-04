@@ -1,7 +1,7 @@
 {
   "description": "Kotlin multi-format reflection-less serialization",
   "properties": {
-    // update: package=org.jetbrains.kotlinx:kotlinx-serialization-json
+    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:kotlinx-serialization-json",
     "v": "1.3.2"
   },
   "link": "https://github.com/Kotlin/kotlinx.serialization",
