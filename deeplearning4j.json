@@ -3,7 +3,7 @@
   "properties": {
     "v": "1.0.0-beta6",
     "v-renovate-hint": "update: package=org.nd4j:nd4j-api",
-    "slf4j": "1.7.25",
+    "slf4j": "1.7.36",
     "slf4j-renovate-hint": "update: package=org.slf4j:slf4j-api",
     "freemarker": "2.3.29",
     "freemarker-renovate-hint": "update: package=org.freemarker:freemarker"
