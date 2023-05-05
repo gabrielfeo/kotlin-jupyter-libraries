@@ -1,8 +1,8 @@
 {
   "description": "Kotlin date/time library",
   "properties": {
-    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:kotlinx-datetime",
-    "v": "0.4.0"
+    "v": "0.4.0",
+    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:kotlinx-datetime"
   },
   "link": "https://github.com/Kotlin/kotlinx-datetime",
   "dependencies": [

@@ -1,8 +1,8 @@
 {
   "description": "Kotlin grammar for data visualization",
   "properties": {
-    "v-renovate-hint": "update: package=com.github.holgerbrandl:kravis",
-    "v": "0.8.1"
+    "v": "0.8.1",
+    "v-renovate-hint": "update: package=com.github.holgerbrandl:kravis"
   },
   "link": "https://github.com/holgerbrandl/kravis",
   "dependencies": [

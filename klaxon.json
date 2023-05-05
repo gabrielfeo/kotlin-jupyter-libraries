@@ -1,8 +1,8 @@
 {
   "description": "JSON parser for Kotlin",
   "properties": {
-    "v-renovate-hint": "update: package=com.beust:klaxon",
-    "v": "5.5"
+    "v": "5.5",
+    "v-renovate-hint": "update: package=com.beust:klaxon"
   },
   "link": "https://github.com/cbeust/klaxon",
   "dependencies": [

@@ -1,8 +1,8 @@
 {
   "description": "Kotlin framework for structured data processing",
   "properties": {
-    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:dataframe",
-    "v": "0.10.0"
+    "v": "0.10.0",
+    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:dataframe"
   },
   "repositories": [
     "https://oss.sonatype.org/service/local/repo_groups/public/content"

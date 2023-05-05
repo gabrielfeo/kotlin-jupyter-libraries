@@ -1,8 +1,8 @@
 {
   "description": "Discrete event simulator",
   "properties": {
-    "v-renovate-hint": "update: package=com.github.holgerbrandl:kalasim",
-    "v": "0.7.92"
+    "v": "0.7.92",
+    "v-renovate-hint": "update: package=com.github.holgerbrandl:kalasim"
   },
   "link": "https://www.kalasim.org",
   "dependencies": [

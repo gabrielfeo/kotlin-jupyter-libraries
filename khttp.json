@@ -1,8 +1,8 @@
 {
   "description": "HTTP networking library",
   "properties": {
-    "v-renovate-hint": "update: package=com.github.jkcclemens:khttp",
-    "v": "39f76b4186"
+    "v": "39f76b4186",
+    "v-renovate-hint": "update: package=com.github.jkcclemens:khttp"
   },
   "link": "https://github.com/jkcclemens/khttp",
   "repositories": [

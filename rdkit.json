@@ -1,8 +1,8 @@
 {
   "description": "Open-Source Cheminformatics Software",
   "properties": {
-    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:rdkit-jupyter",
-    "v": "1.0.0"
+    "v": "1.0.0",
+    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:rdkit-jupyter"
   },
   "link": "https://www.rdkit.org/",
   "dependencies": [

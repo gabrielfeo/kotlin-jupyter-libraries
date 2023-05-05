@@ -1,8 +1,8 @@
 {
   "description": "Kotlin SQL framework",
   "properties": {
-    "v-renovate-hint": "update: package=org.jetbrains.exposed:exposed-core",
-    "v": "0.41.1"
+    "v": "0.41.1",
+    "v-renovate-hint": "update: package=org.jetbrains.exposed:exposed-core"
   },
   "link": "https://github.com/JetBrains/Exposed",
   "dependencies": [

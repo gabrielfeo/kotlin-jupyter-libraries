@@ -1,8 +1,8 @@
 {
   "description": "A combinatorics library for Kotlin",
   "properties": {
-    "v-renovate-hint": "update: package=com.github.shiguruikai:combinatoricskt",
-    "v": "1.6.0"
+    "v": "1.6.0",
+    "v-renovate-hint": "update: package=com.github.shiguruikai:combinatoricskt"
   },
   "link": "https://github.com/shiguruikai/combinatoricskt",
   "dependencies": [

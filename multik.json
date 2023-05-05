@@ -1,8 +1,8 @@
 {
   "description": "Multidimensional array library for Kotlin",
   "properties": {
-    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:multik-core-jvm",
-    "v": "0.2.1"
+    "v": "0.2.1",
+    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:multik-core-jvm"
   },
   "link": "https://github.com/Kotlin/multik",
   "dependencies": [

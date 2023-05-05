@@ -2,10 +2,10 @@
   "description": "Lets-Plot visualisation for GeoTools toolkit",
   "link": "https://github.com/JetBrains/lets-plot-kotlin",
   "properties": {
-    "api-renovate-hint": "update: package=org.jetbrains.lets-plot:lets-plot-kotlin-geotools",
     "api": "4.3.0",
-    "gt-renovate-hint": "update: package=org.geotools:gt-geojson",
-    "gt": "[23,)"
+    "api-renovate-hint": "update: package=org.jetbrains.lets-plot:lets-plot-kotlin-geotools",
+    "gt": "[23,)",
+    "gt-renovate-hint": "update: package=org.geotools:gt-geojson"
   },
   "repositories": [
     "https://repo.osgeo.org/repository/release"

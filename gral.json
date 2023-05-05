@@ -1,8 +1,8 @@
 {
   "description": "Java library for displaying plots",
   "properties": {
-    "v-renovate-hint": "update: package=de.erichseifert.gral:gral-core",
-    "v": "0.11"
+    "v": "0.11",
+    "v-renovate-hint": "update: package=de.erichseifert.gral:gral-core"
   },
   "link": "https://github.com/eseifert/gral",
   "dependencies": [

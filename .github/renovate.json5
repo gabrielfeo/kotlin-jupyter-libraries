@@ -45,10 +45,8 @@
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        // Matches syntax "v": "1.0"
-        "[\"']\\S+-renovate-hint[\"']:\\s*[\"']update:\\s+package=(?<packageName>\\S+?)[\"'],\\s*[\"'](?<depName>.+?)[\"']:\\s*[\"'](?<currentValue>.+?)[\"']",
-        // Matches syntax { "name": "v", "value": "1.0" }
-        "[\"']\\S+-renovate-hint[\"']:\\s*[\"']update:\\s+package=(?<packageName>\\S+?)[\"'],\\s*{\\s*[\"']name[\"']:\\s*[\"'](?<depName>.+?)[\"'],\\s*[\"']value[\"']:\\s*[\"'](?<currentValue>.+?)[\"']",
+        // https://regex101.com/r/7ESmC8/1
+        '(?:{ "name": )?"(?<depName>.+?)"[:,] (?:"value": )?"(?<currentValue>.+?)"(?: })?,\\s*"\\S+-renovate-hint":\\s*"update:\\s+package=(?<packageName>\\S+?)"',
       ]
     },
   ],

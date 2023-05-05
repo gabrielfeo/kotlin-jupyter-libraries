@@ -1,8 +1,8 @@
 {
   "description": "Asynchronous programming and reactive streams support",
   "properties": {
-    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:kotlinx-coroutines-core",
-    "v": "1.5.2"
+    "v": "1.5.2",
+    "v-renovate-hint": "update: package=org.jetbrains.kotlinx:kotlinx-coroutines-core"
   },
   "link": "https://github.com/Kotlin/kotlinx.coroutines",
   "dependencies": [
