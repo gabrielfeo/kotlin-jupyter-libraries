@@ -1,7 +1,7 @@
 {
   "description": "Deep learning library for the JVM",
   "properties": {
-    "v": "1.0.0-beta6",
+    "v": "1.0.0-SNAPSHOT",
     "v-renovate-hint": "update: package=org.nd4j:nd4j-api",
     "slf4j": "1.7.25",
     "slf4j-renovate-hint": "update: package=org.slf4j:slf4j-api",
