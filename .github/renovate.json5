@@ -45,8 +45,8 @@
       "fileMatch": [".*\\.json"],
       "matchStringsStrategy": "any",
       "matchStrings": [
-        // https://regex101.com/r/7ESmC8/2
-        '(?:{ *"name": *)?"(?<depName>.+?)"[:,] (?:"value": *)?"(?<currentValue>.+?)"(?: *})?,\\s*"\\S+-renovate-hint": *"update: +package=(?<packageName>\\S+?)"',
+        // https://regex101.com/r/7ESmC8/5
+        '(?:{ *"name": *)?"(?<depName>.+?)"[:,] *(?:"value": *)?"(?<currentValue>.+?)"(?: *})?,\\s*(?:{ *"name": *)?"\\S+-renovate-hint"[:,] *(?:"value": *)?"update: +package=(?<packageName>\\S+?)"',
       ]
     },
   ],
