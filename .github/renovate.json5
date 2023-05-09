@@ -49,4 +49,21 @@
       ]
     },
   ],
+  "packageRules": [
+    // Ignore -dev versions, because in maven 1.0 < 1.0-dev
+    {
+      "matchPackagePatterns": ["/.*/"],
+      "allowedVersions": "!/-dev/",
+    },
+    // Ignore pushed by mistake version
+    {
+      "matchPackageNames": ["org.jetbrains.kotlinx:dataframe"],
+      "allowedVersions": "!/^1548$/",
+    },
+    // Ignore pushed by mistake versions
+    {
+      "matchPackageNames": ["com.github.gabrielfeo:gradle-enterprise-api-kotlin"],
+      "allowedVersions": "!/^0\\.999.*$/",
+    },
+  ]
 }
